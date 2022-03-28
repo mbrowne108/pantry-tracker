@@ -22,17 +22,15 @@ function App() {
     .then(data => setIngredients(data))
   }, [])
 
-  console.log(recipes)
-
   return (
     <div>
       <header className="App-header">
-        <h1>Recipes/Pantry/Shopping List App</h1>
+        <h1 className='jumbotron text-center'>Recipes/Pantry/Shopping List App</h1>
         <NavBar />
         <Routes>
           <Route 
             exact path="/" 
-            element={<RecipesContainer recipes={recipes} />}
+            element={<RecipesContainer className='container' recipes={recipes} />}
           />
           <Route 
             exact path="/pantry" 

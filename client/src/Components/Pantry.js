@@ -8,7 +8,7 @@ function Pantry({ ingredients }) {
           {ingredients.map((ingredient) => {
             return (
               <div>
-                <li key={ingredient.id}>{ingredient.name} {<button>Add to Shopping List</button>}</li>
+                <li key={ingredient.id}>{ingredient.name} {<button className='btn btn-secondary btn-sm'>Add to Shopping List</button>}</li>
               </div>
             )
           })}
