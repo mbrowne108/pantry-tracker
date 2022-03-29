@@ -4,7 +4,7 @@ import NewIngredientForm from './NewIngredientForm.js'
 
 function Pantry({ ingredients, onNewIngredient, onDeleteIngredient }) {
   return (
-    <div className='col-sm-4'>
+    <div className='col-sm-6'>
       <br/>
       <h3 className='text-center'>Pantry</h3>
         <div className="list-group">

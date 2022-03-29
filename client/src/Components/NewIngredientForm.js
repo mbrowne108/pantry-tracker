@@ -30,7 +30,7 @@ function NewIngredientForm({ onNewIngredient }) {
     }
 
     return (
-        <div id="form" className="collapse">
+        <div id="form" className="collapse col-sm-6">
             <h4 className='text-center'>New Item Form</h4>
             <form onSubmit={formSubmit}>
                 <div className='form-group'>
