@@ -15,7 +15,7 @@ function RecipeCard({ recipe }) {
                 <h5>Ingredients:</h5>
                 <ul>
                     {recipe.ingredients.map((ingredient) => {
-                    return <li key={ingredient.id}>{ingredient.name}</li>
+                        return <li key={ingredient.id}>{ingredient.name}</li>
                     })}
                 </ul>
                 <h5>Instructions:</h5>

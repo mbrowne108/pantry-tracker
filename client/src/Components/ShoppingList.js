@@ -2,8 +2,9 @@ import React from 'react';
 
 function ShoppingList({ ingredients }) {
   return (
-    <div>
-      <h3>Shopping List</h3>
+    <div className='col-sm-6'>
+      <br/>
+      <h3 className='text-center'>Shopping List</h3>
       <ul>
           {ingredients.map((ingredient) => {
             if (ingredient.amount < 2) {

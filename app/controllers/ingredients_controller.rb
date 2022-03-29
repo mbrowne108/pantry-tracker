@@ -22,7 +22,7 @@ class IngredientsController < ApplicationController
     private
 
     def find_ingredient
-        Ingredient.find(params[:id])
+        Ingredient.find_by(id: params[:id])
     end
 
     def ingredient_params

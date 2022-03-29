@@ -1,18 +1,18 @@
 import React from 'react';
+import PantryCard from './PantryCard.js'
+import NewIngredientForm from './NewIngredientForm.js'
 
-function Pantry({ ingredients }) {
+function Pantry({ ingredients, onNewIngredient, onDeleteIngredient }) {
   return (
-    <div>
-      <h3>Pantry</h3>
-        <ul>
-          {ingredients.map((ingredient) => {
-            return (
-              <div>
-                <li key={ingredient.id}>{ingredient.name} {<button className='btn btn-secondary btn-sm'>Add to Shopping List</button>}</li>
-              </div>
-            )
-          })}
-        </ul>
+    <div className='col-sm-4'>
+      <br/>
+      <h3 className='text-center'>Pantry</h3>
+        <div className="list-group">
+          {ingredients.map((ingredient) => <PantryCard key={ingredient.id} ingredient={ingredient} onDeleteIngredient={onDeleteIngredient}/>)}
+        </div>
+        <br/>
+        <button data-bs-toggle="collapse" data-bs-target="#form">Add new item</button>
+        <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} /> 
     </div>
   );
 }

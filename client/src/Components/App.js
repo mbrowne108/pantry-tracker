@@ -22,6 +22,18 @@ function App() {
     .then(data => setIngredients(data))
   }, [])
 
+  function onNewIngredient(newIngredient) {
+    const newIngredientArray = [...ingredients, newIngredient]
+    setIngredients(newIngredientArray)
+    alert(`${newIngredient.name} has been added to your pantry`)
+  }
+
+  function onDeleteIngredient(deletedIngredient) {
+    const updatedIngredients = ingredients.filter((ingredient) => ingredient.id !== deletedIngredient.id)
+    setIngredients(updatedIngredients)
+    alert(`You have deleted ${deletedIngredient.name} from your pantry`)
+  }
+
   return (
     <div>
       <header className="App-header">
@@ -34,7 +46,7 @@ function App() {
           />
           <Route 
             exact path="/pantry" 
-            element={<Pantry ingredients={ingredients} />}
+            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} />}
           />
           <Route 
             exact path="/shoppinglist" 
