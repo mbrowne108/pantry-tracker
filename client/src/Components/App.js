@@ -34,10 +34,21 @@ function App() {
     alert(`You have deleted ${deletedIngredient.name} from your pantry`)
   }
 
+  function onUpdateIngredient(updatedIngredient) {
+    const updatedIngredients = ingredients.map((ingredient) => {
+      if (ingredient.id === updatedIngredient.id) {
+        return updatedIngredient
+      } else {
+        return ingredient
+      }
+    })
+    setIngredients(updatedIngredients)
+  }
+
   return (
     <div>
       <header className="App-header">
-        <h1 className='jumbotron text-center'>Recipes/Pantry/Shopping List App</h1>
+        <h1 className='jumbotron display-2 text-center'>Recipes/Pantry/Shopping List App</h1>
         <NavBar />
         <Routes>
           <Route 
@@ -46,11 +57,11 @@ function App() {
           />
           <Route 
             exact path="/pantry" 
-            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} />}
+            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} />}
           />
           <Route 
             exact path="/shoppinglist" 
-            element={<ShoppingList ingredients={ingredients} />}
+            element={<ShoppingList ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} />}
           />
         </Routes>
       </header>

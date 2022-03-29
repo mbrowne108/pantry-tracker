@@ -19,6 +19,16 @@ class IngredientsController < ApplicationController
         render json: ingredient, status: :created
     end
 
+    def update
+        ingredient = find_ingredient
+        if ingredient
+            ingredient.update(ingredient_params)
+            render json: ingredient
+        else
+            render json: { error: "Ingredient not found" }, status: :not_found
+        end
+    end
+
     private
 
     def find_ingredient
@@ -26,6 +36,6 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-        params.permit(:name, :amount, :measurement)
+        params.permit(:name, :amount, :measurement, :in_shopping_list)
     end
 end
