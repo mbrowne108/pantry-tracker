@@ -1,44 +1,34 @@
 import React from 'react';
 
-function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient }) {
-  function itemColor(item) {
-    if (item.amount >= 3) {
-      return 'success'
-    } else if (item.amount > 0) {
-      return 'warning'
-    } else if (item.amount === 0) {
-      return 'danger'
+function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemColor }) {
+    function handleDelete() {
+        fetch(`/ingredients/${ingredient.id}`, {
+            method: "DELETE",
+        })
+            .then(r => r.json())
+            .then(() => onDeleteIngredient(ingredient))
     }
-  }
 
-  function handleDelete() {
-    fetch(`/ingredients/${ingredient.id}`, {
-        method: "DELETE",
-    })
-        .then(r => r.json())
-        .then(() => onDeleteIngredient(ingredient))
-  }
-
-  function handleUpdate() {
-    fetch(`/ingredients/${ingredient.id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            in_shopping_list: !ingredient.in_shopping_list 
-        }),
-    })
-        .then(r => r.json())
-        .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
-} 
+    function handleUpdate() {
+        fetch(`/ingredients/${ingredient.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                in_shopping_list: !ingredient.in_shopping_list 
+            }),
+        })
+            .then(r => r.json())
+            .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
+    } 
 
     return (
-        <h6 key={ingredient.id} className={`list-group-item-${itemColor(ingredient)}`}>
-          <span className='badge rounded-pill bg-primary'>{ingredient.amount}</span>
-          {' ' + ingredient.name + ': ' + ingredient.measurement}
-          {<button className='btn btn-primary btn-sm float-end' onClick={handleDelete}>❌</button>}
-          {<button className='btn btn-primary btn-sm float-end' onClick={handleUpdate}>🛒</button>}
+        <h6 className={`row list-group-item-${itemColor(ingredient)}`}>
+          <span className='badge rounded-pill bg-primary col-sm-1'>{ingredient.amount}</span>
+          <h6 className="col-sm-9">{' ' + ingredient.name + ': ' + ingredient.measurement}</h6>
+          {<button className='btn btn-primary btn-sm col-sm-1' onClick={handleDelete}>❌</button>}
+          {<button className='btn btn-primary btn-sm col-sm-1' onClick={handleUpdate}>🛒</button>}
         </h6>
     )
 }

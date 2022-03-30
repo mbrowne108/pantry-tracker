@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import RecipesContainer from './RecipesContainer.js'
+import Recipes from './Recipes.js'
 import Pantry from './Pantry.js'
 import ShoppingList from './ShoppingList.js'
 import NavBar from './NavBar.js'
@@ -45,6 +45,16 @@ function App() {
     setIngredients(updatedIngredients)
   }
 
+  function itemColor(item) {
+    if (item.amount >= 3) {
+      return 'success'
+    } else if (item.amount > 0) {
+      return 'warning'
+    } else if (item.amount === 0) {
+      return 'danger'
+    }
+  }
+
   return (
     <div>
       <header className="App-header">
@@ -53,15 +63,15 @@ function App() {
         <Routes>
           <Route 
             exact path="/" 
-            element={<RecipesContainer className='container' recipes={recipes} />}
+            element={<Recipes className='container' recipes={recipes} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
           />
           <Route 
             exact path="/pantry" 
-            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} />}
+            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
           />
           <Route 
             exact path="/shoppinglist" 
-            element={<ShoppingList ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} />}
+            element={<ShoppingList ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
           />
         </Routes>
       </header>

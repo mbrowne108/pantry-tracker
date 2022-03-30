@@ -40,8 +40,8 @@ function NewIngredientForm({ onNewIngredient }) {
     }
 
     return (
-        <div id="form" className="collapse container">
-            <h4 className='text-center'>New Item Form</h4>
+        <div id="form" className="collapse container col-sm-4">
+            <h5 className='text-center'>New Item Form</h5>
             <form onSubmit={formSubmit}>
                 <div className='mb-3'>
                     <label>Ingredient Name:</label>

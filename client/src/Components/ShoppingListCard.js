@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ShoppingListCard({ ingredient, onUpdateIngredient }) {
+function ShoppingListCard({ ingredient, onUpdateIngredient, itemColor }) {
     const [itemAmount, setItemAmount] = useState(0)
 
     function increaseItem() {
@@ -27,23 +27,13 @@ function ShoppingListCard({ ingredient, onUpdateIngredient }) {
             setItemAmount(0)
     }
 
-    function itemColor(item) {
-        if (item.amount >= 3) {
-            return 'success'
-        } else if (item.amount > 0) {
-            return 'warning'
-        } else if (item.amount === 0) {
-            return 'danger'
-        }
-    }
-
     return (
-        <h6 key={ingredient.id} className={`list-group-item-${itemColor(ingredient)}`}>
-            {ingredient.name + ': ' + ingredient.measurement}
-            {<button className='btn btn-primary btn-sm float-end' onClick={handleUpdate}> ✔️</button>}
-            {<button className='btn btn-outline-secondary btn-sm float-end' onClick={increaseItem}>➕</button>}
-            {<p className='h4 align-text-bottom float-end' name="amount">{itemAmount}</p>}
-            {<button className='btn btn-outline-secondary btn-sm float-end' onClick={decreaseItem}>➖</button>}
+        <h6 key={ingredient.id} className={`row list-group-item-${itemColor(ingredient)}`}>
+            <h6 className='col-sm-8'>{ingredient.name + ': ' + ingredient.measurement}</h6>
+            <button className='btn btn-outline-secondary btn-sm col-sm-1' onClick={decreaseItem}>➖</button>
+            <p className='h4 text-center col-sm-1' name="amount">{itemAmount}</p>
+            <button className='btn btn-outline-secondary btn-sm col-sm-1' onClick={increaseItem}>➕</button>
+            <button className='btn btn-primary btn-sm col-sm-1' onClick={handleUpdate}> ✔️</button>
         </h6>
     )
 }

@@ -13,19 +13,19 @@ butter = Ingredient.create(name: 'Butter', amount: 0, measurement: 'stick(s)', i
 sugar = Ingredient.create(name: 'Sugar', amount: 1, measurement: 'lb(s)', in_shopping_list: false)
 
 puts "Seeding recipes..."
-cake = Recipe.create(name: 'Pound Cake', instructions: '1. Mix wet ingredients 2. Mix dry ingredients 3. Mix wet ingredients into dry ingredients 4. Bake at 350F for 35 minutes')
+cake = Recipe.create(name: 'Pound Cake', instructions: '1. Mix wet ingredients\n2. Mix dry ingredients\n3. Mix wet ingredients into dry ingredients\n4. Bake at 350F for 35 minutes')
 cake.ingredients << eggs
 cake.ingredients << flour
 cake.ingredients << butter
 cake.ingredients << sugar
 
-pasta = Recipe.create(name: 'Spaghetti and Meatballs', instructions: '1. Cook meatballs with onions 2. Add pasta sauce 3. Cook pastas 4. Add cooked sauce to cooked pasta')
+pasta = Recipe.create(name: 'Spaghetti and Meatballs', instructions: '1. Cook meatballs with onions\n2. Add pasta sauce\n3. Cook pasta\n4. Add cooked sauce to cooked pasta')
 pasta.ingredients << spaghetti
 pasta.ingredients << meatballs
 pasta.ingredients << sauce
 pasta.ingredients << onions
 
-omelette = Recipe.create(name: 'Omelette', instructions: '1. Heat butter in pan 2. Cook onions in butter 3. Add whipped eggs 4. Flip omelette')
+omelette = Recipe.create(name: 'Omelette', instructions: '1. Heat butter in pan\n2. Cook onions in butter\n3. Add whipped eggs\n4. Flip omelette')
 omelette.ingredients << eggs
 omelette.ingredients << butter
 omelette.ingredients << onions

@@ -1,7 +1,7 @@
 import React from 'react';
 import ShoppingListCard from './ShoppingListCard.js'
 
-function ShoppingList({ ingredients, onUpdateIngredient }) {
+function ShoppingList({ ingredients, onUpdateIngredient, itemColor }) {
   const filteredIngredients = ingredients.filter((ingredient) => ingredient.in_shopping_list === true)
 
   return (
@@ -9,7 +9,7 @@ function ShoppingList({ ingredients, onUpdateIngredient }) {
       <br/>
       <h3 className='text-center'>Shopping List</h3>
         <div className="list-group">
-          {filteredIngredients.map((ingredient) => <ShoppingListCard key={ingredient.id} ingredient={ingredient} onUpdateIngredient={onUpdateIngredient}/>)}
+          {filteredIngredients.map((ingredient) => <ShoppingListCard key={ingredient.id} ingredient={ingredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>)}
         </div>
     </div>
   );
