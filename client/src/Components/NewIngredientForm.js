@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 function NewIngredientForm({ onNewIngredient }) {
-    
-
     const [formData, setFormData] = useState({
         name: '',
         amount: 0,
@@ -53,7 +51,7 @@ function NewIngredientForm({ onNewIngredient }) {
                 </div>
                 <div className='mb-3'>
                     <label>Ingredient Amount</label>
-                    <input type="text" name="amount" value={formData.amount} onChange={handleChange} className='form-control'/>
+                    <input type="number" name="amount" value={formData.amount} onChange={handleChange} className='form-control'/>
                 </div>
                 <div className='form-check'>
                     <input className='form-check-input' type="checkbox" name="in_shopping_list" checked={formData.in_shopping_list} onChange={handleChange}/>

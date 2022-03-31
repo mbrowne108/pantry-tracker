@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function NewRecipeForm({  }) {
+function NewRecipeForm({ ingredients, onNewRecipe }) {
     const [formData, setFormData] = useState({
         name: '',
         instructions: '',
@@ -8,47 +8,59 @@ function NewRecipeForm({  }) {
     })
 
     function handleChange(e) {
-        setFormData({...formData, [e.target.name]: e.target.value})
+        let value = e.target.value
+
+        if (e.target.name === "ingredients") {
+            const options = e.target.options
+            value = []
+            for (var i = 0, l = options.length; i < l; i++) {
+                if (options[i].selected) {
+                    value.push(ingredients[i])
+                }
+            }  
+        }
+        setFormData({...formData, [e.target.name]: value})
     }
 
-    console.log(formData)
-
-    // function formSubmit(e) {
-    //     e.preventDefault()
-    //     fetch(`/recipes`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       body: JSON.stringify(formData),
-    //     })
-    //       .then(r => r.json())
-    //       .then((newIngredient) => onNewIngredient(newIngredient))
-    //     setFormData({
-    //         name: '',
-    //         amount: 0,
-    //         measurement: '',
-    //         in_shopping_list: false
-    //     })
-    // }
+    function formSubmit(e) {
+        e.preventDefault()
+        fetch(`/recipes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData),
+        })
+          .then(r => r.json())
+          .then((newRecipe) => onNewRecipe(newRecipe))
+        setFormData({
+            name: '',
+            instructions: '',
+            ingredients: []
+        })
+    }
 
     return (
         <div id="form" className="collapse container col-sm-4">
             <h5 className='text-center'>New Recipe Form</h5>
-            <form>
+            <form onSubmit={formSubmit}>
                 <div className='mb-3'>
                     <label>Recipe Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
                 </div>
                 <div className='mb-3'>
-                    <label>Ingredient:</label>
-                    <input type="text" name="ingredients" value={formData.ingredient} onChange={handleChange} className='form-control'/>
+                    <label>Recipe Ingredients <small>(Ctrl+Click for multiple)</small></label>
+                    <select name="ingredients" multiple onChange={handleChange} className='form-select'>
+                        {ingredients.map((ingredient, index) => {
+                            return <option key={ingredient.id} value={index}>{ingredient.name}</option>
+                        })}
+                    </select>
                 </div>
                 <div className='mb-3'>
                     <label>Recipe Instructions</label>
                     <textarea type="text" name="instructions" value={formData.instructions} onChange={handleChange} className='form-control'/>
                 </div>
-                <button type="submit" className='btn btn-primary'>Add Item</button>
+                <button type="submit" className='btn btn-primary'>Add Recipe</button>
             </form>
         </div>
     );

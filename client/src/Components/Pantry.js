@@ -8,7 +8,7 @@ function Pantry({ ingredients, onNewIngredient, onDeleteIngredient, onUpdateIngr
       <br/>
       <h3 className='text-center'>Pantry</h3>
         <div className="list-group">
-          {ingredients.map((ingredient) => <PantryCard key={ingredient.id} ingredient={ingredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>)}
+          {ingredients.map((ingredient) => <PantryCard key={ingredient.id} ingredient={ingredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor} />)}
         </div>
         <br/>
         <div className="container text-center"> 

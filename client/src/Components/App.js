@@ -28,10 +28,22 @@ function App() {
     alert(`${newIngredient.name} has been added to your pantry`)
   }
 
+  function onNewRecipe(newRecipe) {
+    const newRecipeArray = [...recipes, newRecipe]
+    setRecipes(newRecipeArray)
+    alert(`${newRecipe.name} has been added to your pantry`)
+  }
+
   function onDeleteIngredient(deletedIngredient) {
     const updatedIngredients = ingredients.filter((ingredient) => ingredient.id !== deletedIngredient.id)
     setIngredients(updatedIngredients)
     alert(`You have deleted ${deletedIngredient.name} from your pantry`)
+  }
+
+  function onDeleteRecipe(deletedRecipe) {
+    const updatedRecipes = recipes.filter((recipe) => recipe.id !== deletedRecipe.id)
+    setIngredients(updatedRecipes)
+    alert(`You have deleted ${deletedRecipe.name} from your pantry`)
   }
 
   function onUpdateIngredient(updatedIngredient) {
@@ -63,7 +75,7 @@ function App() {
         <Routes>
           <Route 
             exact path="/" 
-            element={<Recipes className='container' recipes={recipes} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
+            element={<Recipes className='container' recipes={recipes} ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} onNewRecipe={onNewRecipe} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor}/>}
           />
           <Route 
             exact path="/pantry" 
