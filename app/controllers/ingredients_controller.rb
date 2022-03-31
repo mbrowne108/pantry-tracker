@@ -15,12 +15,8 @@ class IngredientsController < ApplicationController
     end
 
     def create
-        ingredient = Ingredient.create!(ingredient_params)
-        if ingredient.valid?
-            render json: ingredient, status: :created
-        else
-            render json: { error: "Ingredient not valid" }, status: :unprocessable_entity
-        end
+        ingredient = @current_user.ingredients.create!(ingredient_params)
+        render json: ingredient, status: :created
     end
 
     def update

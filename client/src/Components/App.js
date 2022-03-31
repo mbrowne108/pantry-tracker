@@ -5,10 +5,20 @@ import Recipes from './Recipes.js'
 import Pantry from './Pantry.js'
 import ShoppingList from './ShoppingList.js'
 import NavBar from './NavBar.js'
+import Login from "./Login";
 
 function App() {
+  const [user, setUser] = useState(null)
   const [recipes, setRecipes] = useState([])
   const [ingredients, setIngredients] = useState([])
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
 
   useEffect(() => {
     fetch('/recipes')
@@ -67,11 +77,21 @@ function App() {
     }
   }
 
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null)
+      }
+    })
+  }
+
+  if (!user) return <Login onLogin={setUser}/>
+
   return (
     <div>
       <header className="App-header">
         <h1 className='jumbotron display-2 text-center'>Recipes/Pantry/Shopping List App</h1>
-        <NavBar />
+        <NavBar handleLogoutClick={handleLogoutClick}/>
         <Routes>
           <Route 
             exact path="/" 

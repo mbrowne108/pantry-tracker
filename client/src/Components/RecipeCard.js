@@ -1,7 +1,7 @@
 import React from 'react';
 
 function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
-    const newInstructions = recipe.instructions.replace('\\n','\n')
+    const newInstructions = recipe.instructions.replaceAll('\\n','\n')
     const splitInstructions = newInstructions.split(/\r?\n/)
 
     function handleUpdate(e) {

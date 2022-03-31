@@ -15,14 +15,14 @@ class RecipesController < ApplicationController
     end
 
     def create
-        recipe = Recipe.create!(recipe_params)
+        recipe = @current_user.recipes.create!(recipe_params)
         render json: recipe, status: :created
     end
 
     private
 
     def find_recipe
-        Recipe.find(params[:id])
+        Recipe.find_by(id: params[:id])
     end
 
     def recipe_params

@@ -25,15 +25,15 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
     } 
 
     return (
-        <h6 className={`row list-group-item-${itemColor(ingredient)}`}>
+        <h5 className={`row list-group-item-${itemColor(ingredient)}`}>
             <span className='badge rounded-pill bg-primary col-sm-1'>{ingredient.amount}</span>
-            <h6 className="col-sm-9">{' ' + ingredient.name + ': ' + ingredient.measurement}</h6>
+            <p className="col-sm-9">{' ' + ingredient.name + ': ' + ingredient.measurement}</p>
             {<button className='btn btn-primary btn-sm col-sm-1' onClick={handleDelete}>❌</button>}
             {!ingredient.in_shopping_list ? 
                 <button className='btn btn-primary active btn-sm col-sm-1' onClick={handleUpdate}>🛒</button> :
                 <button className='btn btn-primary btn-sm col-sm-1' disabled>🛒</button>
             }
-        </h6>
+        </h5>
     )
 }
 
