@@ -6,14 +6,15 @@ function Pantry({ ingredients, onNewIngredient, onDeleteIngredient, onUpdateIngr
   return (
     <div className='container'>
       <br/>
-      <h3 className='text-center'>Pantry</h3>
+      <h3 className='text-center display-6'>Pantry</h3>
         <div className="list-group">
           {ingredients.map((ingredient) => <PantryCard key={ingredient.id} ingredient={ingredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor} />)}
         </div>
         <br/>
         <div className="container text-center"> 
           <button className="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#form">Add New Item</button>
-        </div>  
+        </div>
+        <br/>  
         <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} />
     </div>
   );

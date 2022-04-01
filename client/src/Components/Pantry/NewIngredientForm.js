@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function NewIngredientForm({ onNewIngredient }) {
+    const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
         name: '',
         amount: 0,
@@ -27,20 +28,36 @@ function NewIngredientForm({ onNewIngredient }) {
           },
           body: JSON.stringify(formData),
         })
-          .then(r => r.json())
-          .then((newIngredient) => onNewIngredient(newIngredient))
-        setFormData({
-            name: '',
-            amount: 0,
-            measurement: '',
-            in_shopping_list: false
+        .then(r => {
+            if (r.ok) {
+                r.json()
+                .then((newIngredient) => onNewIngredient(newIngredient))
+                setFormData({
+                    name: '',
+                    amount: 0,
+                    measurement: '',
+                    in_shopping_list: false
+                })
+            } else {
+                r.json().then(err => setErrors(err.errors))
+            }
         })
     }
 
     return (
-        <div id="form" className="collapse container col-sm-4">
-            <h5 className='text-center'>New Item Form</h5>
+        <div id="form" className="collapse container col-sm-4 card bg-light">
+            <br/>
+            <h5 className='text-center card-title'>New Item Form</h5>
             <form onSubmit={formSubmit}>
+                <div className='mb-3'>
+                    {errors.map(err => {
+                        return (
+                            <div className='alert alert-danger alert-dismissible fade show' key={err}>
+                                {err}
+                                <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                            </div>)
+                    })}
+                </div>
                 <div className='mb-3'>
                     <label>Ingredient Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
@@ -57,7 +74,7 @@ function NewIngredientForm({ onNewIngredient }) {
                     <input className='form-check-input' type="checkbox" name="in_shopping_list" checked={formData.in_shopping_list} onChange={handleChange}/>
                     <label className='form-check-label' >Add this item to your shopping list?</label>
                 </div>
-                <button type="submit" className='btn btn-primary'>Add Item</button>
+                <button type="submit" className='btn btn-primary'>Add Item</button>  
             </form>
         </div>
     );

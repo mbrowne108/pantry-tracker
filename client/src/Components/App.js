@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Recipes from './Recipes.js'
-import Pantry from './Pantry.js'
-import ShoppingList from './ShoppingList.js'
+import Recipes from './Recipes/Recipes.js'
+import Pantry from './Pantry/Pantry.js'
+import ShoppingList from './ShoppingList/ShoppingList.js'
 import NavBar from './NavBar.js'
-import Login from "./Login";
+import Login from "./Login/Login.js";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -13,23 +13,23 @@ function App() {
   const [ingredients, setIngredients] = useState([])
 
   useEffect(() => {
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user))
-      }
-    })
-  }, [])
-
-  useEffect(() => {
     fetch('/recipes')
     .then(r => r.json())
     .then(data => setRecipes(data))
-  }, [])
+  }, [ingredients])
 
   useEffect(() => {
     fetch('/ingredients')
     .then(r => r.json())
     .then(data => setIngredients(data))
+  }, [])
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    })
   }, [])
 
   function onNewIngredient(newIngredient) {
@@ -47,13 +47,11 @@ function App() {
   function onDeleteIngredient(deletedIngredient) {
     const updatedIngredients = ingredients.filter((ingredient) => ingredient.id !== deletedIngredient.id)
     setIngredients(updatedIngredients)
-    alert(`You have deleted ${deletedIngredient.name} from your pantry`)
   }
 
   function onDeleteRecipe(deletedRecipe) {
     const updatedRecipes = recipes.filter((recipe) => recipe.id !== deletedRecipe.id)
-    setIngredients(updatedRecipes)
-    alert(`You have deleted ${deletedRecipe.name} from your pantry`)
+    setRecipes(updatedRecipes)
   }
 
   function onUpdateIngredient(updatedIngredient) {

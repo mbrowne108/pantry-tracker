@@ -6,7 +6,6 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
 
     function handleUpdate(e) {
         const ingredient = recipe.ingredients[e.target.value]
-        console.log(ingredient)
         fetch(`/ingredients/${ingredient.id}`, {
             method: "PATCH",
             headers: {
@@ -18,15 +17,17 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
         })
             .then(r => r.json())
             .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
-            alert(`You have added ${ingredient.name} to your shopping list`)
     } 
 
     function handleDelete() {
-        fetch(`/recipes/${recipe.id}`, {
-            method: "DELETE",
-        })
-            .then(r => r.json())
-            .then(() => onDeleteRecipe(recipe))
+        const result = window.confirm(`Are you sure you want to delete ${recipe.name}?`)
+        if (result) {
+            fetch(`/recipes/${recipe.id}`, {
+                method: "DELETE",
+            })
+                .then(r => r.json())
+                .then(() => onDeleteRecipe(recipe))
+        }  
     }
     
     return (

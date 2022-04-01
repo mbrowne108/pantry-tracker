@@ -7,7 +7,7 @@ function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDelete
     <div>
       <br/>
       <div className="container accordion">
-        <h3 className='text-center'>Recipes</h3>
+        <h3 className='text-center display-6'>Recipes</h3>
         {recipes.map((recipe) => {
           return <RecipeCard key={recipe.id} recipe={recipe} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
         })}
@@ -16,6 +16,7 @@ function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDelete
       <div className="container text-center"> 
         <button className="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#form">Add New Recipe</button>
       </div>
+      <br/>
       <NewRecipeForm ingredients={ingredients} onNewRecipe={onNewRecipe} /> 
     </div>
   );

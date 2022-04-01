@@ -2,11 +2,14 @@ import React from 'react';
 
 function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemColor }) {
     function handleDelete() {
-        fetch(`/ingredients/${ingredient.id}`, {
-            method: "DELETE",
-        })
-            .then(r => r.json())
-            .then(() => onDeleteIngredient(ingredient))
+        const result = window.confirm(`Are you sure you want to delete ${ingredient.name}?`)
+        if (result) {
+            fetch(`/ingredients/${ingredient.id}`, {
+                method: "DELETE",
+            })
+                .then(r => r.json())
+                .then(() => onDeleteIngredient(ingredient))
+        }
     }
 
     function handleUpdate() {
@@ -21,7 +24,6 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
         })
             .then(r => r.json())
             .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
-            alert(`You have added ${ingredient.name} to your shopping list`)
     } 
 
     return (

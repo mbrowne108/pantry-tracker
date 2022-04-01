@@ -11,7 +11,7 @@ class IngredientsController < ApplicationController
     def destroy
         ingredient = find_ingredient
         ingredient.destroy
-        head :no_content
+        render json: {}
     end
 
     def create

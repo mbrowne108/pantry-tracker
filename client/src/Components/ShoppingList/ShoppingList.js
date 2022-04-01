@@ -7,7 +7,7 @@ function ShoppingList({ ingredients, onUpdateIngredient, itemColor }) {
   return (
     <div className='container'>
       <br/>
-      <h3 className='text-center'>Shopping List</h3>
+      <h3 className='text-center display-6'>Shopping List</h3>
         <div className="list-group">
           {filteredIngredients.map((ingredient) => <ShoppingListCard key={ingredient.id} ingredient={ingredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>)}
         </div>

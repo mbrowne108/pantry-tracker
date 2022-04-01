@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_03_31_205644) do
     t.bigint "ingredient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["ingredient_id"], name: "index_recipe_ingrdeients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 

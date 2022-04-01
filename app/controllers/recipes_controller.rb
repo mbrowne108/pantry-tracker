@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
     def destroy
         recipe = find_recipe
         recipe.destroy
-        head :no_content
+        render json: {}
     end
 
     def create

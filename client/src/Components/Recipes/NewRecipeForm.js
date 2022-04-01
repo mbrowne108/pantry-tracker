@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function NewRecipeForm({ ingredients, onNewRecipe }) {
+    const [errors, setErrors] = useState([])
     const [formData, setFormData] = useState({
         name: '',
         instructions: '',
@@ -31,19 +32,35 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
           },
           body: JSON.stringify(formData),
         })
-          .then(r => r.json())
-          .then((newRecipe) => onNewRecipe(newRecipe))
-        setFormData({
-            name: '',
-            instructions: '',
-            ingredients: []
-        })
+        .then(r => {
+            if (r.ok) {
+                r.json()
+                .then((newRecipe) => onNewRecipe(newRecipe))
+                setFormData({
+                    name: '',
+                    instructions: '',
+                    ingredients: []
+                })
+            } else {
+                r.json().then(err => setErrors(err.errors))
+            }
+        })      
     }
 
     return (
-        <div id="form" className="collapse container col-sm-4">
-            <h5 className='text-center'>New Recipe Form</h5>
+        <div id="form" className="collapse container col-sm-4 card bg-light">
+            <br/>
+            <h5 className='text-center card-title'>New Recipe Form</h5>
             <form onSubmit={formSubmit}>
+                <div className='mb-3'>
+                    {errors.map(err => {
+                        return (
+                            <div className='alert alert-danger alert-dismissible fade show' key={err}>
+                                {err}
+                                <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                            </div>)
+                    })}
+                </div>
                 <div className='mb-3'>
                     <label>Recipe Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
