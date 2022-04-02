@@ -19,10 +19,16 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
         setIngredientFields([...ingredientFields, newField])
     }
 
+    // function removeIngredientFields(index) {
+    //     let data = [...ingredientFields]
+    //     data.splice(index, 1)
+    //     setIngredientFields(data)
+    // }
+
     function handleChange(e, index) {
         let value = e.target.value
 
-        if (e.target.name === "ingredient_ids") {
+        if (e.target.name === "ingredient_ids" || e.target.name === "button") {
             const options = e.target.options
             value = []
             ingredientFields[index].ing_id = e.target.value
@@ -38,13 +44,14 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
             ingredientFields[index].measurements = e.target.value
             for (let i = 0, l = ingredientFields.length; i < l; i++) {
                 value.push(ingredientFields[i].measurements)
-            }  
+            }
         }
         setFormData({...formData, [e.target.name]: value})
     }
 
+    console.log(formData)
+
     function formSubmit(e) {
-        console.log(formData)
         e.preventDefault()
         fetch(`/recipes`, {
           method: "POST",
@@ -60,8 +67,10 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                 setFormData({
                     name: '',
                     instructions: '',
-                    ingredients: []
+                    ingredients: [],
+                    measurements: []
                 })
+                setIngredientFields([{measurements: '', ing_id: ''}])
             } else {
                 r.json().then(err => setErrors(err.errors))
             }
@@ -86,15 +95,17 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                     <label>Recipe Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
                 </div>
-
-
-
-                {/* NEW STUFF */}
                 {ingredientFields.map((input, index) => {
                     return (
                         <div className='row' key={index}>
                             <div className='col-sm-4'>
-                                <input className='form-control' name="measurements" placeholder="Measure" value={input.measurements} onChange={e => handleChange(e,index)}/>
+                                <input 
+                                    className='form-control' 
+                                    name="measurements" 
+                                    placeholder="Measure" 
+                                    value={input.measurements} 
+                                    onChange={e => handleChange(e,index)}
+                                />
                             </div>
                             <div className='col-sm-6'>
                                 <select className='form-select' name="ingredient_ids" onChange={e => handleChange(e,index)}>
@@ -104,9 +115,13 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                                     })}
                                 </select>
                             </div>
-                            <div className='col-sm-1'>
-                                <button className="btn-outline-secondary btn-sm" type="button">➖</button>
-                            </div>
+                            {/* <div className='col-sm-1'>
+                                <button 
+                                    className="btn-outline-secondary btn-sm" 
+                                    type="button" 
+                                    onClick={() => removeIngredientFields(index,input)}
+                                >➖</button>
+                            </div> */}
                         </div>
                     )
                 })}
@@ -114,20 +129,6 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                     <br/>
                     <button type="button" className="btn-outline-secondary btn-sm col-sm-4" onClick={addIngredientFields}>➕</button>
                 </div>
-                {/* NEW STUFF */}
-
-
-                {/* OLD STUFF */}
-                {/* <div className='mb-3'>
-                    <label>Recipe Ingredients <small>(Ctrl+Click for multiple)</small></label>
-                    <select name="ingredient_ids" multiple onChange={handleChange} className='form-select'>
-                        {ingredients.map((ingredient, index) => {
-                            return <option key={ingredient.id} value={index}>{ingredient.name}</option>
-                        })}
-                    </select>
-                </div> */}
-                {/* OLD STUFF */}
-
                 <div className='mb-3'>
                     <br/>
                     <label>Recipe Instructions</label>
