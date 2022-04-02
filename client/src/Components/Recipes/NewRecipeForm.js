@@ -24,6 +24,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
     }
 
     function formSubmit(e) {
+        console.log(formData)
         e.preventDefault()
         fetch(`/recipes`, {
           method: "POST",

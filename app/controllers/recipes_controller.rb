@@ -1,4 +1,7 @@
 class RecipesController < ApplicationController
+    skip_before_action :authorize, only: [:index]
+    wrap_parameters format: []
+    
     def index
         render json: Recipe.all, status: 200
     end
@@ -10,8 +13,12 @@ class RecipesController < ApplicationController
 
     def destroy
         recipe = find_recipe
-        recipe.destroy
-        render json: {}
+        if recipe.user == @current_user
+            recipe.destroy
+            render json: {}
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
     end
 
     def create
@@ -26,6 +33,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.permit(:name, :instructions)
+        params.permit(:name, :instructions, ingredients_attributes: [ :id, :name, :amount, :measurement, :in_shopping_list ])
     end
 end

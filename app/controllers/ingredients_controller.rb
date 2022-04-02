@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+    skip_before_action :authorize, only: [:index]
+
     def index
         render json: Ingredient.all, status: 200
     end
@@ -10,8 +12,12 @@ class IngredientsController < ApplicationController
 
     def destroy
         ingredient = find_ingredient
-        ingredient.destroy
-        render json: {}
+        if ingredient.user == @current_user
+            ingredient.destroy
+            render json: {}
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end
     end
 
     def create
