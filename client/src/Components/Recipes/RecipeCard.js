@@ -3,6 +3,7 @@ import React from 'react';
 function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
     const newInstructions = recipe.instructions.replaceAll('\\n','\n')
     const splitInstructions = newInstructions.split(/\r?\n/)
+    const measurements = recipe.measurements.replace('[','').replace(']','').replaceAll('"', '').split(', ')
 
     function handleUpdate(e) {
         const ingredient = recipe.ingredients[e.target.value]
@@ -43,19 +44,33 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
             </div>
             <div id={`recipe-details-${recipe.id}`} className='card-body accordion-collapse collapse hide'>
                 <h5>Ingredients:</h5>
-                <ul className="list-group">
-                    {recipe.ingredients.map((ingredient, index) => {
-                        return (
-                            <div className='row container' key={ingredient.id}>
-                                <h6 className={`list-group-item-${itemColor(ingredient)} col-sm-5`}>{ingredient.name}</h6>
-                                {!ingredient.in_shopping_list ? 
-                                    <button className='btn btn-primary active btn-sm col-sm-1' value={index} onClick={handleUpdate}>🛒</button> :
-                                    <button className='btn btn-primary btn-sm col-sm-1' disabled>🛒</button>
-                                }
-                            </div>
-                        )
-                    })}
-                </ul>
+                <div className='list-group list-group-horizontal'>
+                    <ul className="list-group-item col-sm-2">
+                        {measurements.map((measurement, index) => {
+                            return (
+                                <div className='row' key={index}>
+                                    <h6 className='col-sm-10'>{measurement}</h6>
+                                    <button className='btn btn-primary btn-sm col-sm-1 invisible' disabled>A</button>
+                                </div>
+                            )
+                        })}
+                    </ul>
+                    <ul className={`list-group-item col-sm-4`}>
+                        {recipe.ingredients.map((ingredient, index) => {
+                            return (
+                                <div className='row' key={ingredient.id}>
+                                    <h6 className={`list-group-item-${itemColor(ingredient)} col-sm-10`}>{ingredient.name}</h6>
+                                    {!ingredient.in_shopping_list ? 
+                                        <button className='btn btn-primary active btn-sm col-sm-2' value={index} onClick={handleUpdate}>🛒</button> :
+                                        <button className='btn btn-primary btn-sm col-sm-2' disabled>🛒</button>
+                                    }
+                                </div>
+                            )
+                        })}
+                    </ul>
+
+                </div>
+                
                 <h5>Instructions:</h5>
                 {splitInstructions.map((inst) => {
                     return <p key={inst} className='col-sm-8'>{inst}</p>

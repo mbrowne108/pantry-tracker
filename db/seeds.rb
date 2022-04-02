@@ -17,19 +17,19 @@ butter = matt.ingredients.create(name: 'Butter', amount: 0, measurement: 'stick(
 sugar = matt.ingredients.create(name: 'Sugar', amount: 1, measurement: 'lb(s)', in_shopping_list: false)
 
 puts "Seeding recipes..."
-cake = matt.recipes.create(name: 'Pound Cake', instructions: '1. Mix wet ingredients\n2. Mix dry ingredients\n3. Mix wet ingredients into dry ingredients\n4. Bake at 350F for 35 minutes')
+cake = matt.recipes.create(name: 'Pound Cake', instructions: '1. Mix wet ingredients\n2. Mix dry ingredients\n3. Mix wet ingredients into dry ingredients\n4. Bake at 350F for 35 minutes', measurements: "[6, 1 lb, 4 sticks, 1 lb]")
 cake.ingredients << eggs
 cake.ingredients << flour
 cake.ingredients << butter
 cake.ingredients << sugar
 
-pasta = matt.recipes.create(name: 'Spaghetti and Meatballs', instructions: '1. Cook meatballs with onions\n2. Add pasta sauce\n3. Cook pasta\n4. Add cooked sauce to cooked pasta')
+pasta = matt.recipes.create(name: 'Spaghetti and Meatballs', instructions: '1. Cook meatballs with onions\n2. Add pasta sauce\n3. Cook pasta\n4. Add cooked sauce to cooked pasta', measurements: "[1 lb, 12, 1 jar, 1]")
 pasta.ingredients << spaghetti
 pasta.ingredients << meatballs
 pasta.ingredients << sauce
 pasta.ingredients << onions
 
-omelette = matt.recipes.create(name: 'Omelette', instructions: '1. Heat butter in pan\n2. Cook onions in butter\n3. Add whipped eggs\n4. Flip omelette')
+omelette = matt.recipes.create(name: 'Omelette', instructions: '1. Heat butter in pan\n2. Cook onions in butter\n3. Add whipped eggs\n4. Flip omelette', measurements: "[3, 1 tbsp, 1/2]")
 omelette.ingredients << eggs
 omelette.ingredients << butter
 omelette.ingredients << onions

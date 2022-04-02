@@ -5,4 +5,5 @@ class Recipe < ApplicationRecord
 
     validates :name, presence: true, uniqueness: true
     validates :instructions, presence: true
+    validates :measurements, presence: true
 end
