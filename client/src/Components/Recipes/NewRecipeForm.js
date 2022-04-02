@@ -5,18 +5,18 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
     const [formData, setFormData] = useState({
         name: '',
         instructions: '',
-        ingredients: []
+        ingredient_ids: []
     })
 
     function handleChange(e) {
         let value = e.target.value
 
-        if (e.target.name === "ingredients") {
+        if (e.target.name === "ingredient_ids") {
             const options = e.target.options
             value = []
             for (var i = 0, l = options.length; i < l; i++) {
                 if (options[i].selected) {
-                    value.push(ingredients[i])
+                    value.push(ingredients[i].id)
                 }
             }  
         }
@@ -24,7 +24,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
     }
 
     function formSubmit(e) {
-        console.log(formData)
+        
         e.preventDefault()
         fetch(`/recipes`, {
           method: "POST",
@@ -68,7 +68,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                 </div>
                 <div className='mb-3'>
                     <label>Recipe Ingredients <small>(Ctrl+Click for multiple)</small></label>
-                    <select name="ingredients" multiple onChange={handleChange} className='form-select'>
+                    <select name="ingredient_ids" multiple onChange={handleChange} className='form-select'>
                         {ingredients.map((ingredient, index) => {
                             return <option key={ingredient.id} value={index}>{ingredient.name}</option>
                         })}

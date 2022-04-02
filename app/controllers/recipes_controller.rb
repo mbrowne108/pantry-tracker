@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
     skip_before_action :authorize, only: [:index]
-    wrap_parameters format: []
+    wrap_parameters format: []  
     
     def index
         render json: Recipe.all, status: 200
@@ -33,6 +33,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.permit(:name, :instructions, ingredients_attributes: [ :id, :name, :amount, :measurement, :in_shopping_list ])
+        params.permit(:name, :instructions, ingredient_ids: [])
     end
 end

@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
     skip_before_action :authorize, only: [:index]
+    wrap_parameters format: []
 
     def index
         render json: Ingredient.all, status: 200

@@ -3,13 +3,14 @@ import RecipeCard from './RecipeCard.js'
 import NewRecipeForm from './NewRecipeForm.js'
 
 function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDeleteRecipe, onNewRecipe }) {
-
+  const alphabeticalRecipes = recipes.sort((a, b) => a.id - b.id)
+  
   return (
     <div>
       <br/>
       <div className="container accordion">
         <h3 className='text-center display-6'>Recipes</h3>
-        {recipes.map((recipe) => {
+        {alphabeticalRecipes.map((recipe) => {
           return <RecipeCard key={recipe.id} recipe={recipe} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
         })}
       </div>
