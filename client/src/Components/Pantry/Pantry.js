@@ -12,10 +12,12 @@ function Pantry({ ingredients, onNewIngredient, onDeleteIngredient, onUpdateIngr
         </div>
         <br/>
         <div className="container text-center"> 
-          <button className="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#form">Add New Item</button>
+          <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ing-form-modal">Add New Item</button>
         </div>
-        <br/>  
-        <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} />
+        <br/>
+        <div className='modal fade' id="ing-form-modal">
+          <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} />
+        </div>  
     </div>
   );
 }

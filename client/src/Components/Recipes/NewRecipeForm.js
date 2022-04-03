@@ -81,62 +81,68 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
     }
 
     return (
-        <div id="form" className="collapse container col-sm-6 card bg-light">
-            <br/>
-            <h5 className='text-center card-title'>New Recipe Form</h5>
-            <form onSubmit={formSubmit}>
-                <div className='mb-3'>
-                    {errors.map(err => {
-                        return (
-                            <div className='alert alert-danger alert-dismissible fade show' key={err}>
-                                {err}
-                                <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
-                            </div>)
-                    })}
+        <div className="modal-dialog container col-sm-6 bg-light">
+            <div className='modal-content'>
+                <div className='modal-header'>
+                    <h5 className='display-6'>New Recipe Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div className='mb-3'>
-                    <label>Recipe Name:</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
-                </div>
-                {ingredientFields.map((input, index) => {
-                    return (
-                        <div className='row' key={input.id}>
-                            <div className='col-sm-4'>
-                                <input 
-                                    className='form-control' 
-                                    name="measurements" 
-                                    placeholder="Measure" 
-                                    value={input.measurements} 
-                                    onChange={e => handleChange(e, index)}
-                                />
-                            </div>
-                            <div className='col-sm-6'>
-                                <select className='form-select' name="ingredient_ids" onChange={e => handleChange(e, index)}>
-                                    <option value=''>Choose Ingredient</option>
-                                    {ingredients.map((ingredient) => {
-                                        return <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>
-                                    })}
-                                </select>
-                            </div>
-                            <div className='col-sm-1'>
-                                <button type="button" className="btn-outline-secondary btn-sm" onClick={() => removeIngredientFields(index)}>➖</button>
-                            </div>
+                <div className='modal-body'>
+                    <form onSubmit={formSubmit}>
+                        <div className='mb-3'>
+                            {errors.map(err => {
+                                return (
+                                    <div className='alert alert-danger alert-dismissible fade show' key={err}>
+                                        {err}
+                                        <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>)
+                            })}
                         </div>
-                    )
-                })}
-                <div className='text-center'>
-                    <br/>
-                    <button type="button" className="btn-outline-secondary btn-sm col-sm-4" onClick={addIngredientFields}>➕</button>
+                        <div className='mb-3'>
+                            <label>Recipe Name:</label>
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} className='form-control'/>
+                        </div>
+                        {ingredientFields.map((input, index) => {
+                            return (
+                                <div className='row' key={input.id}>
+                                    <div className='col-sm-4'>
+                                        <input 
+                                            className='form-control' 
+                                            name="measurements" 
+                                            placeholder="Measure" 
+                                            value={input.measurements} 
+                                            onChange={e => handleChange(e, index)}
+                                        />
+                                    </div>
+                                    <div className='col-sm-6'>
+                                        <select className='form-select' name="ingredient_ids" onChange={e => handleChange(e, index)}>
+                                            <option value=''>Choose Ingredient</option>
+                                            {ingredients.map((ingredient) => {
+                                                return <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>
+                                            })}
+                                        </select>
+                                    </div>
+                                    <div className='col-sm-1'>
+                                        <button type="button" className="btn-outline-secondary btn-sm" onClick={() => removeIngredientFields(index)}>➖</button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className='text-center'>
+                            <br/>
+                            <button type="button" className="btn-outline-secondary btn-sm col-sm-4" onClick={addIngredientFields}>➕</button>
+                        </div>
+                        <div className='mb-3'>
+                            <br/>
+                            <label>Recipe Instructions</label>
+                            <textarea type="text" name="instructions" value={formData.instructions} onChange={handleChange} className='form-control'/>
+                        </div>
+                        <div className='text-center'>
+                            <button type="submit" className='btn btn-primary col-sm-4'>Add Recipe</button>
+                        </div>
+                    </form>
                 </div>
-                <div className='mb-3'>
-                    <br/>
-                    <label>Recipe Instructions</label>
-                    <textarea type="text" name="instructions" value={formData.instructions} onChange={handleChange} className='form-control'/>
-                </div>
-                <div className='text-center'>
-                    <button type="submit" className='btn btn-primary col-sm-4'>Add Recipe</button>
-                </div>
-            </form>
+            </div>
         </div>
     );
 }

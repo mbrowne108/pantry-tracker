@@ -16,10 +16,12 @@ function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDelete
       </div>
       <br/>
       <div className="container text-center"> 
-        <button className="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#form">Add New Recipe</button>
+        <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rec-form-modal">Add New Recipe</button>
       </div>
       <br/>
-      <NewRecipeForm ingredients={ingredients} onNewRecipe={onNewRecipe} /> 
+      <div className='modal fade' id="rec-form-modal">
+        <NewRecipeForm ingredients={ingredients} onNewRecipe={onNewRecipe} /> 
+      </div>
     </div>
   );
 }
