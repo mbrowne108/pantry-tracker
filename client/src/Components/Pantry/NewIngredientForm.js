@@ -49,7 +49,7 @@ function NewIngredientForm({ onNewIngredient }) {
             <div className='modal-content'>
                 <div className='modal-header'>
                     <h5 className='display-6'>New Item Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div className='modal-body'>
                     <form onSubmit={formSubmit}>
