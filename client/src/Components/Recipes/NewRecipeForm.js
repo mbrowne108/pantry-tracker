@@ -52,7 +52,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
         setFormData({...formData, [e.target.name]: value})
     }
 
-    console.log(formData)
+    // console.log(formData)
 
     function formSubmit(e) {
         e.preventDefault()
@@ -85,7 +85,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
             <div className='modal-content'>
                 <div className='modal-header'>
                     <h5 className='display-6'>New Recipe Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div className='modal-body'>
                     <form onSubmit={formSubmit}>

@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RecipeCard from './RecipeCard.js'
 import NewRecipeForm from './NewRecipeForm.js'
 
 function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDeleteRecipe, onNewRecipe }) {
-  const sortedRecipes = recipes.sort((a, b) => a.id - b.id)
+  const [searchValue, setSearchValue] = useState('')
+
+  function handleSearch(e) {
+    setSearchValue(e.target.value)
+  }
+
+  const searchedRecipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(searchValue.toLowerCase()))
   
   return (
     <div>
       <br/>
       <div className="container accordion">
         <h3 className='text-center display-6'>Recipes</h3>
-        {sortedRecipes.map((recipe) => {
+        <input type="search" className="form-control rounded col-sm-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
+        {searchedRecipes.map((recipe) => {
           return <RecipeCard key={recipe.id} recipe={recipe} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
         })}
       </div>
