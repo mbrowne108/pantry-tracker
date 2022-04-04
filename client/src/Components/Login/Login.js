@@ -8,7 +8,7 @@ function Login({ onLogin }) {
   return (
     <div>
       <h1 className='container rounded p-3 my-2 border bg-light display-1 text-center'>Kitchen Kingpin</h1>
-      <div className="container card text-center col-4">
+      <div className="container card text-center col-6">
         {showLogin ? (
             <>
                 <LoginForm onLogin={onLogin} />

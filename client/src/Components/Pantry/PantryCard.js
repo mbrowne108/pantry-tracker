@@ -18,9 +18,7 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
         let value = ''
 
         if (e.target.name === "in_shopping_list") {
-        
             btnName = e.target.name
-            console.log(btnName)
             value = !ingredient.in_shopping_list 
         } else if (e.target.name === "increase") {
             btnName = 'amount'
@@ -49,13 +47,13 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
             <p className="col-7">{' ' + ingredient.name + ': ' + ingredient.measurement}</p>
             {ingredient.amount > 0 ?
                 <button className='btn btn-outline-secondary activebtn-sm col-1 fa fa-minus' name="decrease" onClick={handleUpdate}></button> :
-                <button className='btn btn-outline-secondary btn-sm col-1 fa fa-minus' disabled name="decrease" onClick={handleUpdate}></button>
+                <button className='btn btn-outline-secondary btn-sm col-1 fa fa-minus invisible' disabled name="decrease" onClick={handleUpdate}></button>
             }
             <button className='btn btn-outline-secondary btn-sm col-1 fa fa-plus' name="increase" onClick={handleUpdate}></button>
             {<button className='btn btn-primary btn-sm col-1 fa fa-trash' onClick={handleDelete}></button>}
             {!ingredient.in_shopping_list ? 
                 <button className='btn btn-primary active btn-sm col-1 fa fa-cart-plus' name="in_shopping_list" onClick={handleUpdate}></button> :
-                <button className='btn btn-primary btn-sm col-1 fa fa-cart-plus' disabled></button>
+                <button className='btn btn-secondary btn-sm col-1 fa fa-cart-plus' name="in_shopping_list" onClick={handleUpdate}></button>
             }
         </h5>
     )

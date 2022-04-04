@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
     wrap_parameters format: []
 
     def index
-        render json: Ingredient.all, status: 200
+        render json: Ingredient.order(:created_at).all, status: 200
     end
 
     def show

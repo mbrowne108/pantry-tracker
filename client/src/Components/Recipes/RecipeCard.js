@@ -54,7 +54,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                                     <h6 className={`list-group-item-${itemColor(ingredient)} mb-3 col-9`}>{ingredient.measurement} — {ingredient.name}</h6>
                                     {!ingredient.in_shopping_list ? 
                                         <button className='btn btn-primary active btn-sm col-3 fa fa-cart-plus' value={ingredient.id} onClick={handleUpdate}></button> :
-                                        <button className='btn btn-primary btn-sm col-3 fa fa-cart-plus' disabled></button>
+                                        <button className='btn btn-secondary btn-sm col-3 fa fa-cart-plus' value={ingredient.id} onClick={handleUpdate}></button>
                                     }
                                 </div>
                             )
