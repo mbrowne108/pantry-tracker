@@ -48,14 +48,14 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
             <button className='btn btn-outline-primary text-center col-1'>{ingredient.amount}</button>
             <p className="col-7">{' ' + ingredient.name + ': ' + ingredient.measurement}</p>
             {ingredient.amount > 0 ?
-                <button className='btn btn-outline-secondary activebtn-sm col-1' name="decrease" onClick={handleUpdate}>➖</button> :
-                <button className='btn btn-outline-secondary btn-sm col-1' disabled name="decrease" onClick={handleUpdate}>➖</button>
+                <button className='btn btn-outline-secondary activebtn-sm col-1 fa fa-minus' name="decrease" onClick={handleUpdate}></button> :
+                <button className='btn btn-outline-secondary btn-sm col-1 fa fa-minus' disabled name="decrease" onClick={handleUpdate}></button>
             }
-            <button className='btn btn-outline-secondary btn-sm col-1' name="increase" onClick={handleUpdate}>➕</button>
-            {<button className='btn btn-primary btn-sm col-1' onClick={handleDelete}>❌</button>}
+            <button className='btn btn-outline-secondary btn-sm col-1 fa fa-plus' name="increase" onClick={handleUpdate}></button>
+            {<button className='btn btn-primary btn-sm col-1 fa fa-trash' onClick={handleDelete}></button>}
             {!ingredient.in_shopping_list ? 
-                <button className='btn btn-primary active btn-sm col-1' name="in_shopping_list" onClick={handleUpdate}>🛒</button> :
-                <button className='btn btn-primary btn-sm col-1' disabled>🛒</button>
+                <button className='btn btn-primary active btn-sm col-1 fa fa-cart-plus' name="in_shopping_list" onClick={handleUpdate}></button> :
+                <button className='btn btn-primary btn-sm col-1 fa fa-cart-plus' disabled></button>
             }
         </h5>
     )

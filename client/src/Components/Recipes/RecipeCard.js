@@ -52,8 +52,8 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                                 <div className='row' key={ingredient[0].id}>
                                     <h6 className={`list-group-item-${itemColor(ingredient[0])} mb-3 col-9`}>{ingredient[1]} — {ingredient[0].name}</h6>
                                     {!ingredient[0].in_shopping_list ? 
-                                        <button className='btn btn-primary active btn-sm col-3' value={index} onClick={handleUpdate}>🛒</button> :
-                                        <button className='btn btn-primary btn-sm col-3' disabled>🛒</button>
+                                        <button className='btn btn-primary active btn-sm col-3 fa fa-cart-plus' value={index} onClick={handleUpdate}></button> :
+                                        <button className='btn btn-primary btn-sm col-3 fa fa-cart-plus' disabled></button>
                                     }
                                 </div>
                             )
@@ -64,7 +64,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                 {splitInstructions.map((inst) => {
                     return <p key={inst} className='col-8'>{inst}</p>
                 })}
-                <button className='btn btn-primary btn-sm' onClick={handleDelete}>❌ Delete Recipe</button>
+                <button className='btn btn-primary btn-lg fa fa-trash' onClick={handleDelete}></button>
             </div>
         </div>
     )
