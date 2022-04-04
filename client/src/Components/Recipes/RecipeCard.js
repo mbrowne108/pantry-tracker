@@ -49,12 +49,12 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                         {measurements.map((measurement, index) => {
                             return (
                                 <div className='row' key={index}>
-                                    <h6 className='list-group-item-black mb-3 col-10'>{measurement}</h6>
+                                    <h6 className='list-group-item-black mb-3 text-truncate'>{measurement}</h6>
                                 </div>
                             )
                         })}
                     </ul>
-                    <ul className={`list-group-item col-4`}>
+                    <ul className={`list-group-item col-8`}>
                         {recipe.ingredients.map((ingredient, index) => {
                             return (
                                 <div className='row' key={ingredient.id}>
@@ -67,9 +67,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                             )
                         })}
                     </ul>
-
                 </div>
-                
                 <h5>Instructions:</h5>
                 {splitInstructions.map((inst) => {
                     return <p key={inst} className='col-8'>{inst}</p>
