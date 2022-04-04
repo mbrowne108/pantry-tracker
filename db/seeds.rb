@@ -29,7 +29,7 @@ pasta.ingredients << meatballs
 pasta.ingredients << sauce
 pasta.ingredients << onions
 
-omelette = matt.recipes.create(name: 'Omelette', instructions: '1. Heat butter in pan\n2. Cook onions in butter\n3. Add whipped eggs\n4. Flip omelette', measurements: "[3, 1 tbsp, 1/2]")
+omelette = matt.recipes.create(name: 'Omelette', instructions: '1. Heat butter in pan\n2. Cook onions in butter\n3. Add whipped eggs\n4. Flip omelette', measurements: "[1/2, 3, 1 tbsp]")
 omelette.ingredients << eggs
 omelette.ingredients << butter
 omelette.ingredients << onions
