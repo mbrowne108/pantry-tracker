@@ -7,7 +7,8 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
     const ingredients = recipe.ingredients.map((ing,i) => Object.assign(ing, {measurement: measurements[i]}))
 
     function handleUpdate(e) {
-        const ingredient = recipe.ingredients[e.target.value]
+        const ingredient = ingredients.find(ing => ing.id == e.target.value)
+
         fetch(`/ingredients/${ingredient.id}`, {
             method: "PATCH",
             headers: {
@@ -47,12 +48,12 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                 <h5>Ingredients:</h5>
                 <div className='list-group list-group-horizontal'>
                     <ul className={`list-group-item col-8`}>
-                        {ingredients.map((ingredient, index) => {
+                        {ingredients.map((ingredient) => {
                             return (
                                 <div className='row' key={ingredient.id}>
                                     <h6 className={`list-group-item-${itemColor(ingredient)} mb-3 col-9`}>{ingredient.measurement} — {ingredient.name}</h6>
                                     {!ingredient.in_shopping_list ? 
-                                        <button className='btn btn-primary active btn-sm col-3 fa fa-cart-plus' value={index} onClick={handleUpdate}></button> :
+                                        <button className='btn btn-primary active btn-sm col-3 fa fa-cart-plus' value={ingredient.id} onClick={handleUpdate}></button> :
                                         <button className='btn btn-primary btn-sm col-3 fa fa-cart-plus' disabled></button>
                                     }
                                 </div>
