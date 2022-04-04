@@ -122,14 +122,14 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                                         </select>
                                     </div>
                                     <div className='col-1'>
-                                        <button type="button" className="btn-outline-secondary btn-sm fa fa-minus" onClick={() => removeIngredientFields(index)}></button>
+                                        <button type="button" className="btn-outline-secondary btn fa fa-minus" onClick={() => removeIngredientFields(index)}></button>
                                     </div>
                                 </div>
                             )
                         })}
                         <div className='text-center'>
                             <br/>
-                            <button type="button" className="btn-outline-secondary btn-sm col-4 fa fa-plus" onClick={addIngredientFields}></button>
+                            <button type="button" className="btn-outline-secondary btn col-4 fa fa-plus" onClick={addIngredientFields}></button>
                         </div>
                         <div className='mb-3'>
                             <br/>

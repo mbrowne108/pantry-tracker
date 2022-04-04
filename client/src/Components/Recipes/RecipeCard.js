@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
+function RecipeCard({ recipe, user, itemColor, onUpdateIngredient, onDeleteRecipe }) {
     const newInstructions = recipe.instructions.replaceAll('\\n','\n')
     const splitInstructions = newInstructions.split(/\r?\n/)
     const measurements = recipe.measurements.replace('[','').replace(']','').replaceAll('"', '').split(', ')
     const ingredients = recipe.ingredients.map((ing,i) => Object.assign(ing, {measurement: measurements[i]}))
+    const [errors, setErrors] = useState([]);
 
     function handleUpdate(e) {
         const ingredient = ingredients.find(ing => ing.id == e.target.value)
@@ -22,16 +23,23 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
             .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
     } 
 
-    function handleDelete() {
+    function handleDelete(e) {
         const result = window.confirm(`Are you sure you want to delete ${recipe.name}?`)
         if (result) {
             fetch(`/recipes/${recipe.id}`, {
                 method: "DELETE",
             })
-                .then(r => r.json())
-                .then(() => onDeleteRecipe(recipe))
-        }  
+            .then(r => {
+                if (r.ok) {
+                    r.json()
+                    .then(() => onDeleteRecipe(recipe))
+                } else {
+                    r.json().then(err => setErrors(err.errors))
+                }
+            })
+        }
     }
+    
     
     return (
         <div className='accordion-item'>
@@ -45,6 +53,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                 </button>
             </div>
             <div id={`recipe-details-${recipe.id}`} className='card-body accordion-collapse collapse hide'>
+                <p className='lead small'>Submitted by {user.username}</p>
                 <h5>Ingredients:</h5>
                 <div className='list-group list-group-horizontal'>
                     <ul className={`list-group-item col-8`}>
@@ -65,7 +74,14 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                 {splitInstructions.map((inst) => {
                     return <p key={inst} className='col-8'>{inst}</p>
                 })}
-                <button className='btn btn-primary btn-lg fa fa-trash' onClick={handleDelete}></button>
+                {errors.map(err => {
+                    return (
+                        <div className='alert alert-danger alert-dismissible fade show' key={err}>
+                            {err}
+                            <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                        </div>)
+                })}
+                <button className='btn btn-primary btn-lg fa fa-trash' value={recipe.user.id} onClick={handleDelete}></button>
             </div>
         </div>
     )

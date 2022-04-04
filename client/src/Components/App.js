@@ -93,15 +93,37 @@ function App() {
         <Routes>
           <Route 
             exact path="/" 
-            element={<Recipes className='container' recipes={recipes} ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} onNewRecipe={onNewRecipe} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor}/>}
+            element={
+              <Recipes 
+                className='container' 
+                recipes={recipes} 
+                ingredients={ingredients}
+                user={user} 
+                onUpdateIngredient={onUpdateIngredient} 
+                onNewRecipe={onNewRecipe} 
+                onDeleteRecipe={onDeleteRecipe} 
+                itemColor={itemColor}
+              />}
           />
           <Route 
             exact path="/pantry" 
-            element={<Pantry ingredients={ingredients} onNewIngredient={onNewIngredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
+            element={
+              <Pantry 
+                ingredients={ingredients} 
+                onNewIngredient={onNewIngredient} 
+                onDeleteIngredient={onDeleteIngredient} 
+                onUpdateIngredient={onUpdateIngredient} 
+                itemColor={itemColor}
+              />}
           />
           <Route 
             exact path="/shoppinglist" 
-            element={<ShoppingList ingredients={ingredients} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor}/>}
+            element={
+              <ShoppingList 
+                ingredients={ingredients} 
+                onUpdateIngredient={onUpdateIngredient} 
+                itemColor={itemColor}
+              />}
           />
         </Routes>
       </header>

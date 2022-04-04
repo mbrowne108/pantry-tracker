@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-    skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: :index
     wrap_parameters format: []  
     
     def index
@@ -14,11 +14,11 @@ class RecipesController < ApplicationController
 
     def destroy
         recipe = find_recipe
-        if recipe.user == @current_user
+        if recipe.user == current_user
             recipe.destroy
             render json: {}
         else
-            render json: { errors: ["Not authorized"] }, status: :unauthorized
+            render json: { errors: ["You are not authorized to delete this recipe"] }, status: :unauthorized
         end
     end
 

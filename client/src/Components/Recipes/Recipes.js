@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RecipeCard from './RecipeCard.js'
 import NewRecipeForm from './NewRecipeForm.js'
 
-function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDeleteRecipe, onNewRecipe }) {
+function Recipes({ recipes, ingredients, user, itemColor, onUpdateIngredient, onDeleteRecipe, onNewRecipe }) {
   const [searchValue, setSearchValue] = useState('')
 
   function handleSearch(e) {
@@ -18,7 +18,7 @@ function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDelete
         <h3 className='text-center display-6'>Recipes</h3>
         <input type="search" className="form-control rounded col-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
         {searchedRecipes.map((recipe) => {
-          return <RecipeCard key={recipe.id} recipe={recipe} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
+          return <RecipeCard key={recipe.id} recipe={recipe} user={user} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
         })}
       </div>
       <br/>
