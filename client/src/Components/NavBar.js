@@ -7,7 +7,7 @@ function NavBar({ handleLogoutClick }) {
       <NavLink className="btn btn-primary" to="/" >Recipes</NavLink>
       <NavLink className="btn btn-primary" to="/pantry" >Pantry</NavLink>
       <NavLink className="btn btn-primary" to="/shoppinglist" >Shopping List</NavLink>
-      <button className="btn btn-secondary col-sm-2" onClick={handleLogoutClick}>Logout</button>
+      <button className="btn btn-secondary col-2" onClick={handleLogoutClick}>Logout</button>
     </nav>
   );
 }

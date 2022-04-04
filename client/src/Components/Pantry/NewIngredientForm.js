@@ -45,7 +45,7 @@ function NewIngredientForm({ onNewIngredient }) {
     }
 
     return (
-        <div className="modal-dialog container col-sm-4 bg-light">
+        <div className="modal-dialog container col-4 bg-light">
             <div className='modal-content'>
                 <div className='modal-header'>
                     <h5 className='display-6'>New Item Form</h5>
@@ -80,7 +80,7 @@ function NewIngredientForm({ onNewIngredient }) {
                         </div>
                         <br/>
                         <div className='text-center'>
-                            <button type="submit" className='btn btn-primary col-sm-4'>Add Item</button>  
+                            <button type="submit" className='btn btn-primary col-4'>Add Item</button>  
                         </div>
                     </form>
                 </div>

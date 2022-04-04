@@ -16,7 +16,7 @@ function Recipes({ recipes, ingredients, itemColor, onUpdateIngredient, onDelete
       <br/>
       <div className="container accordion">
         <h3 className='text-center display-6'>Recipes</h3>
-        <input type="search" className="form-control rounded col-sm-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
+        <input type="search" className="form-control rounded col-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
         {searchedRecipes.map((recipe) => {
           return <RecipeCard key={recipe.id} recipe={recipe} onUpdateIngredient={onUpdateIngredient} onDeleteRecipe={onDeleteRecipe} itemColor={itemColor} />
         })}

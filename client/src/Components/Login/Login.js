@@ -7,8 +7,8 @@ function Login({ onLogin }) {
 
   return (
     <div>
-      <h1 className='jumbotron display-2 text-center'>Recipes/Pantry/Shopping List App</h1>
-      <div className="container card text-center col-sm-4">
+      <h1 className='container rounded p-3 my-2 border bg-light display-1 text-center'>Kitchen Kingpin</h1>
+      <div className="container card text-center col-4">
         {showLogin ? (
             <>
                 <LoginForm onLogin={onLogin} />

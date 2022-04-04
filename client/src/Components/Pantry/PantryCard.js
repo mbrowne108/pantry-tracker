@@ -45,17 +45,17 @@ function PantryCard({ ingredient, onDeleteIngredient, onUpdateIngredient, itemCo
 
     return (
         <h5 className={`row list-group-item-${itemColor(ingredient)}`}>
-            <button className='btn btn-outline-primary text-center col-sm-1'>{ingredient.amount}</button>
-            <p className="col-sm-7">{' ' + ingredient.name + ': ' + ingredient.measurement}</p>
+            <button className='btn btn-outline-primary text-center col-1'>{ingredient.amount}</button>
+            <p className="col-7">{' ' + ingredient.name + ': ' + ingredient.measurement}</p>
             {ingredient.amount > 0 ?
-                <button className='btn btn-outline-secondary activebtn-sm col-sm-1' name="decrease" onClick={handleUpdate}>➖</button> :
-                <button className='btn btn-outline-secondary btn-sm col-sm-1' disabled name="decrease" onClick={handleUpdate}>➖</button>
+                <button className='btn btn-outline-secondary activebtn-sm col-1' name="decrease" onClick={handleUpdate}>➖</button> :
+                <button className='btn btn-outline-secondary btn-sm col-1' disabled name="decrease" onClick={handleUpdate}>➖</button>
             }
-            <button className='btn btn-outline-secondary btn-sm col-sm-1' name="increase" onClick={handleUpdate}>➕</button>
-            {<button className='btn btn-primary btn-sm col-sm-1' onClick={handleDelete}>❌</button>}
+            <button className='btn btn-outline-secondary btn-sm col-1' name="increase" onClick={handleUpdate}>➕</button>
+            {<button className='btn btn-primary btn-sm col-1' onClick={handleDelete}>❌</button>}
             {!ingredient.in_shopping_list ? 
-                <button className='btn btn-primary active btn-sm col-sm-1' name="in_shopping_list" onClick={handleUpdate}>🛒</button> :
-                <button className='btn btn-primary btn-sm col-sm-1' disabled>🛒</button>
+                <button className='btn btn-primary active btn-sm col-1' name="in_shopping_list" onClick={handleUpdate}>🛒</button> :
+                <button className='btn btn-primary btn-sm col-1' disabled>🛒</button>
             }
         </h5>
     )

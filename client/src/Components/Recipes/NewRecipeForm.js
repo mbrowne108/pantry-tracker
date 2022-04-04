@@ -81,7 +81,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
     }
 
     return (
-        <div className="modal-dialog container col-sm-6 bg-light">
+        <div className="modal-dialog container col-6 bg-light">
             <div className='modal-content'>
                 <div className='modal-header'>
                     <h5 className='display-6'>New Recipe Form</h5>
@@ -105,7 +105,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                         {ingredientFields.map((input, index) => {
                             return (
                                 <div className='row' key={input.id}>
-                                    <div className='col-sm-4'>
+                                    <div className='col-4'>
                                         <input 
                                             className='form-control' 
                                             name="measurements" 
@@ -114,7 +114,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                                             onChange={e => handleChange(e, index)}
                                         />
                                     </div>
-                                    <div className='col-sm-6'>
+                                    <div className='col-6'>
                                         <select className='form-select' name="ingredient_ids" onChange={e => handleChange(e, index)}>
                                             <option value=''>Choose Ingredient</option>
                                             {ingredients.map((ingredient) => {
@@ -122,7 +122,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                                             })}
                                         </select>
                                     </div>
-                                    <div className='col-sm-1'>
+                                    <div className='col-1'>
                                         <button type="button" className="btn-outline-secondary btn-sm" onClick={() => removeIngredientFields(index)}>➖</button>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                         })}
                         <div className='text-center'>
                             <br/>
-                            <button type="button" className="btn-outline-secondary btn-sm col-sm-4" onClick={addIngredientFields}>➕</button>
+                            <button type="button" className="btn-outline-secondary btn-sm col-4" onClick={addIngredientFields}>➕</button>
                         </div>
                         <div className='mb-3'>
                             <br/>
@@ -138,7 +138,7 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
                             <textarea type="text" name="instructions" value={formData.instructions} onChange={handleChange} className='form-control'/>
                         </div>
                         <div className='text-center'>
-                            <button type="submit" className='btn btn-primary col-sm-4'>Add Recipe</button>
+                            <button type="submit" className='btn btn-primary col-4'>Add Recipe</button>
                         </div>
                     </form>
                 </div>

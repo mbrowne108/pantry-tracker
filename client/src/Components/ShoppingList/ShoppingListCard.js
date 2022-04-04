@@ -29,11 +29,11 @@ function ShoppingListCard({ ingredient, onUpdateIngredient, itemColor }) {
 
     return (
         <div key={ingredient.id} className={`row h5 list-group-item-${itemColor(ingredient)}`}>
-            <h6 className='col-sm-8'>{ingredient.name + ': ' + ingredient.measurement}</h6>
-            <button className='btn btn-outline-secondary btn-sm col-sm-1' onClick={decreaseItem}>➖</button>
-            <p className='h4 text-center col-sm-1' name="amount">{itemAmount}</p>
-            <button className='btn btn-outline-secondary btn-sm col-sm-1' onClick={increaseItem}>➕</button>
-            <button className='btn btn-primary btn-sm col-sm-1' onClick={handleUpdate}> ✔️</button>
+            <h6 className='col-8'>{ingredient.name + ': ' + ingredient.measurement}</h6>
+            <button className='btn btn-outline-secondary btn-sm col-1' onClick={decreaseItem}>➖</button>
+            <p className='h4 text-center col-1' name="amount">{itemAmount}</p>
+            <button className='btn btn-outline-secondary btn-sm col-1' onClick={increaseItem}>➕</button>
+            <button className='btn btn-primary btn-sm col-1' onClick={handleUpdate}> ✔️</button>
         </div>
     )
 }

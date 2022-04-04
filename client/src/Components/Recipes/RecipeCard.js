@@ -45,24 +45,23 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
             <div id={`recipe-details-${recipe.id}`} className='card-body accordion-collapse collapse hide'>
                 <h5>Ingredients:</h5>
                 <div className='list-group list-group-horizontal'>
-                    <ul className="list-group-item col-sm-2">
+                    <ul className="list-group-item col-2">
                         {measurements.map((measurement, index) => {
                             return (
                                 <div className='row' key={index}>
-                                    <h6 className='col-sm-10'>{measurement}</h6>
-                                    <button className='btn btn-primary btn-sm col-sm-1 invisible' disabled>A</button>
+                                    <h6 className='list-group-item-black mb-3 col-10'>{measurement}</h6>
                                 </div>
                             )
                         })}
                     </ul>
-                    <ul className={`list-group-item col-sm-4`}>
+                    <ul className={`list-group-item col-4`}>
                         {recipe.ingredients.map((ingredient, index) => {
                             return (
                                 <div className='row' key={ingredient.id}>
-                                    <h6 className={`list-group-item-${itemColor(ingredient)} col-sm-10`}>{ingredient.name}</h6>
+                                    <h6 className={`list-group-item-${itemColor(ingredient)} mb-3 col-9`}>{ingredient.name}</h6>
                                     {!ingredient.in_shopping_list ? 
-                                        <button className='btn btn-primary active btn-sm col-sm-2' value={index} onClick={handleUpdate}>🛒</button> :
-                                        <button className='btn btn-primary btn-sm col-sm-2' disabled>🛒</button>
+                                        <button className='btn btn-primary active btn-sm col-3' value={index} onClick={handleUpdate}>🛒</button> :
+                                        <button className='btn btn-primary btn-sm col-3' disabled>🛒</button>
                                     }
                                 </div>
                             )
@@ -73,7 +72,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                 
                 <h5>Instructions:</h5>
                 {splitInstructions.map((inst) => {
-                    return <p key={inst} className='col-sm-8'>{inst}</p>
+                    return <p key={inst} className='col-8'>{inst}</p>
                 })}
                 <button className='btn btn-primary btn-sm' onClick={handleDelete}>❌ Delete Recipe</button>
             </div>

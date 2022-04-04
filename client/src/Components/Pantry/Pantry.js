@@ -15,7 +15,7 @@ function Pantry({ ingredients, onNewIngredient, onDeleteIngredient, onUpdateIngr
     <div className='container'>
       <br/>
       <h3 className='text-center display-6'>Pantry</h3>
-      <input type="search" className="form-control rounded col-sm-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
+      <input type="search" className="form-control rounded col-4" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
       <div className="list-group">
         {searchedIngredients.map((ingredient) => <PantryCard key={ingredient.id} ingredient={ingredient} onDeleteIngredient={onDeleteIngredient} onUpdateIngredient={onUpdateIngredient} itemColor={itemColor} />)}
       </div>
