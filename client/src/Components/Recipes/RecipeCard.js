@@ -4,6 +4,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
     const newInstructions = recipe.instructions.replaceAll('\\n','\n')
     const splitInstructions = newInstructions.split(/\r?\n/)
     const measurements = recipe.measurements.replace('[','').replace(']','').replaceAll('"', '').split(', ')
+    const ingredients = recipe.ingredients.map((ing,i) => [ing, measurements[i]])
 
     function handleUpdate(e) {
         const ingredient = recipe.ingredients[e.target.value]
@@ -45,21 +46,12 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
             <div id={`recipe-details-${recipe.id}`} className='card-body accordion-collapse collapse hide'>
                 <h5>Ingredients:</h5>
                 <div className='list-group list-group-horizontal'>
-                    <ul className="list-group-item col-2">
-                        {measurements.map((measurement, index) => {
-                            return (
-                                <div className='row' key={index}>
-                                    <h6 className='list-group-item-black mb-3 text-truncate'>{measurement}</h6>
-                                </div>
-                            )
-                        })}
-                    </ul>
                     <ul className={`list-group-item col-8`}>
-                        {recipe.ingredients.map((ingredient, index) => {
+                        {ingredients.map((ingredient, index) => {
                             return (
-                                <div className='row' key={ingredient.id}>
-                                    <h6 className={`list-group-item-${itemColor(ingredient)} mb-3 col-9`}>{ingredient.name}</h6>
-                                    {!ingredient.in_shopping_list ? 
+                                <div className='row' key={ingredient[0].id}>
+                                    <h6 className={`list-group-item-${itemColor(ingredient[0])} mb-3 col-9`}>{ingredient[1]} — {ingredient[0].name}</h6>
+                                    {!ingredient[0].in_shopping_list ? 
                                         <button className='btn btn-primary active btn-sm col-3' value={index} onClick={handleUpdate}>🛒</button> :
                                         <button className='btn btn-primary btn-sm col-3' disabled>🛒</button>
                                     }
