@@ -32,7 +32,6 @@ function NewRecipeForm({ ingredients, onNewRecipe }) {
 
         if (e.target.name === "ingredient_ids") {
             const options = e.target.options
-            console.log(options)
             value = []
             ingredientFields[index].ing_id = e.target.value
             for (let i = 0, l = ingredientFields.length; i < l; i++) {

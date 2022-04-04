@@ -3,7 +3,8 @@ class RecipesController < ApplicationController
     wrap_parameters format: []  
     
     def index
-        render json: Recipe.all, status: 200
+        # recipes = Recipe.all.each {|rec| rec.ingredients.order(:name)}
+        render json: Recipe.all
     end
 
     def show
