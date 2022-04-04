@@ -4,7 +4,7 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
     const newInstructions = recipe.instructions.replaceAll('\\n','\n')
     const splitInstructions = newInstructions.split(/\r?\n/)
     const measurements = recipe.measurements.replace('[','').replace(']','').replaceAll('"', '').split(', ')
-    const ingredients = recipe.ingredients.map((ing,i) => [ing, measurements[i]])
+    const ingredients = recipe.ingredients.map((ing,i) => Object.assign(ing, {measurement: measurements[i]}))
 
     function handleUpdate(e) {
         const ingredient = recipe.ingredients[e.target.value]
@@ -49,9 +49,9 @@ function RecipeCard({ recipe, itemColor, onUpdateIngredient, onDeleteRecipe }) {
                     <ul className={`list-group-item col-8`}>
                         {ingredients.map((ingredient, index) => {
                             return (
-                                <div className='row' key={ingredient[0].id}>
-                                    <h6 className={`list-group-item-${itemColor(ingredient[0])} mb-3 col-9`}>{ingredient[1]} — {ingredient[0].name}</h6>
-                                    {!ingredient[0].in_shopping_list ? 
+                                <div className='row' key={ingredient.id}>
+                                    <h6 className={`list-group-item-${itemColor(ingredient)} mb-3 col-9`}>{ingredient.measurement} — {ingredient.name}</h6>
+                                    {!ingredient.in_shopping_list ? 
                                         <button className='btn btn-primary active btn-sm col-3 fa fa-cart-plus' value={index} onClick={handleUpdate}></button> :
                                         <button className='btn btn-primary btn-sm col-3 fa fa-cart-plus' disabled></button>
                                     }
