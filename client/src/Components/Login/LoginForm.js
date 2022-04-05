@@ -55,10 +55,13 @@ function LoginForm({ onLogin }) {
           {isLoading ? "Loading..." : "Login"}
         </button>
       </div>
-      <div className='mb-3'>
-        {errors.map((err) => (
-          <p key={err}>{err}</p>
-        ))}
+      <div>
+        {errors ? errors.map((err) => (
+          <p className='alert alert-danger alert-dismissible fade show mb-3' key={err}>
+            {err} 
+            <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+          </p>
+        )) : null}
       </div>
     </form>
   );

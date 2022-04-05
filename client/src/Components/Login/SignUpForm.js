@@ -26,7 +26,7 @@ function SignUpForm({ onLogin }) {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => console.log(err.errors));
+        r.json().then((err) => setErrors(err.errors));
       }
     });
   }
@@ -69,9 +69,12 @@ function SignUpForm({ onLogin }) {
       </div>
       <button type="submit" className='btn btn-primary'>{isLoading ? "Loading..." : "Sign Up"}</button>
       <div>
-        {errors.map((err) => (
-          <p key={err}>{err}</p>
-        ))}
+        {errors ? errors.map((err) => (
+          <p className='alert alert-danger alert-dismissible fade show mb-3' key={err}>
+            {err} 
+            <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+          </p>
+        )) : null}
       </div>
     </form>
   );
