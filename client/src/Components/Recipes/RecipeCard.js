@@ -39,8 +39,7 @@ function RecipeCard({ recipe, user, itemColor, onUpdateIngredient, onDeleteRecip
             })
         }
     }
-    
-    
+
     return (
         <div className='accordion-item'>
             <div className="card-header">

@@ -25,6 +25,7 @@ function ShoppingListCard({ ingredient, onUpdateIngredient, itemColor }) {
             .then(r => r.json())
             .then((updatedIngredient) => onUpdateIngredient(updatedIngredient))
             setItemAmount(0)
+            alert(`You have checked ${ingredient.name} off your shopping list`)
     }
 
     return (
