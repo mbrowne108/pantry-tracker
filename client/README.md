@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Phase 4 Project - Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Kitchen Kingpin
 
-## Available Scripts
+This is an app keep track of user made recipes, ingredients in the user's pantry, and a shopping list.
 
-In the project directory, you can run:
+## Purpose of the App
 
-### `npm start`
+This is the culmination of a Flatiron School phase teaching Ruby, Active Record, and Rails. It also utilizes React knowledge from previous phases (React front end sold separately)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+As mentioned above, this is the culmination of my Flatiron School knowledge to date. In this project I use the following:
 
-### `npm test`
+    1. CSS (Bootstrap)
+    2. HTML/JSX
+    3. React
+    4. Ruby
+    5. Active Record
+    6. Rails
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Front End (React)
+To start the front end server, run : ``npm start --prefix client`` The server will be hosted on [http://localhost:4000](http://localhost:4000)
 
-### `npm run build`
+The front end consists of React components fetching data from our JSON API, using fetch requests to perform CRUD actions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Additionally, the site is hosted on Heroku at [pantry-tracker-app.herokuapp.com/](https://pantry-tracker-app.herokuapp.com/). The following actions below can be accessed on the remote server by replacing **localhost:4000** with **pantry-tracker-app.herokuapp.com/**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### READ
+- #### GET: ``useEffect`` on the ``/recipes`` and ``/ingredients`` tables reads all data from the API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### UPDATE
+- #### PATCH: In the ``Pantry`` tab, clicking on the ``Shopping Cart``, ``+``, or ``-`` icons updates the corresponding ingredient accordingly (either the amount of ingredients in the pantry, or whether or not it is in the shopping cart).
 
-### `npm run eject`
+### CREATE
+- #### POST: On either the ``Recipes`` or ``Pantry`` tab, filling out the ``New Recipe/Ingredient Form`` posts a new item to the corresponding table.
+- #### POST: On the initial ``Sign Up`` screen, filling out the ``Sign Up Form`` posts a new user to the database, with authentication.
+- #### POST: On the initial login screen, filling out the ``Login Form`` posts a new session to the database, with associated user data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### DELETE
+- #### DELETE: On either the ``Recipes`` or ``Pantry`` tab, clicking the ``Trash Can`` icon deletes the corresponding recipe/ingredient (subject to user auth).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
