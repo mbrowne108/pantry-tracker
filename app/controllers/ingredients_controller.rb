@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-    skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: :index
     wrap_parameters format: []
 
     def index
@@ -29,7 +29,7 @@ class IngredientsController < ApplicationController
     def update
         ingredient = find_ingredient
         if ingredient
-            ingredient.update(ingredient_params)
+            ingredient.update!(ingredient_params)
             render json: ingredient
         else
             render json: { error: "Ingredient not found" }, status: :not_found

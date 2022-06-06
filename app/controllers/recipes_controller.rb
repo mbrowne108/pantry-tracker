@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
     wrap_parameters format: []  
     
     def index
-        render json: Recipe.all
+        render json: Recipe.all, status: 200
     end
 
     def show
@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
 
     def destroy
         recipe = find_recipe
-        if recipe.user == current_user
+        if recipe.user == @current_user
             recipe.destroy
             render json: {}
         else
