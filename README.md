@@ -4,6 +4,8 @@
 
 This is an app keep track of user made recipes, ingredients in the user's pantry, and a shopping list.
 
+Deployed app can be viewed at [https://pantry-tracker-app.herokuapp.com/](https://pantry-tracker-app.herokuapp.com/). Use admin login to view. UN: mbrowne PW: 123
+
 ## Purpose of the App
 
 This is the culmination of a Flatiron School phase teaching Ruby, Active Record, and Rails. It also utilizes React knowledge from previous phases (React front end sold separately)
